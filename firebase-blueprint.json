@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "Materia": {
+      "title": "Materia",
+      "description": "Registro de una materia académica con sus notas y proyecciones",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador único" },
+        "materia": { "type": "string", "description": "Nombre de la materia" },
+        "fecha": { "type": "string", "description": "Fecha del registro" },
+        "timestamp": { "type": "number", "description": "Marca de tiempo para ordenar" },
+        "filas": { "type": "array", "description": "Lista de evaluaciones registradas" },
+        "examenFinal": { "type": "string", "description": "Ponderación del examen final" },
+        "totalAcumulado": { "type": "string", "description": "Porcentaje total acumulado" },
+        "notaNecesaria": { "type": "string", "description": "Nota requerida en examen final" },
+        "pctFaltante": { "type": "string", "description": "Porcentaje restante para aprobar" },
+        "estado": { "type": "string", "description": "Estado de aprobación (pass, fail, normal)" },
+        "userId": { "type": "string", "description": "ID de usuario o dispositivo" }
+      },
+      "required": ["id", "materia", "totalAcumulado"]
+    },
+    "Calculo": {
+      "title": "Calculo",
+      "description": "Cálculo rápido de nota o porcentaje guardado",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador único" },
+        "nombre": { "type": "string", "description": "Nombre o descripción de la prueba" },
+        "fecha": { "type": "string", "description": "Fecha del cálculo" },
+        "timestamp": { "type": "number", "description": "Marca de tiempo para ordenar" },
+        "tipo": { "type": "string", "description": "Tipo de cálculo (porcentaje o nota_requerida)" },
+        "notaInput": { "type": "string", "description": "Nota ingresada" },
+        "valorExamen": { "type": "string", "description": "Ponderación del examen" },
+        "resultado": { "type": "string", "description": "Resultado numérico formateado" },
+        "subtexto": { "type": "string", "description": "Resumen textual" },
+        "userId": { "type": "string", "description": "ID de usuario o dispositivo" }
+      },
+      "required": ["id", "nombre", "resultado"]
+    }
+  },
+  "firestore": {
+    "/materias/{materiaId}": {
+      "schema": "Materia",
+      "description": "Colección de materias y proyecciones académicas"
+    },
+    "/calculos/{calculoId}": {
+      "schema": "Calculo",
+      "description": "Colección de cálculos rápidos de notas"
+    }
+  }
+}

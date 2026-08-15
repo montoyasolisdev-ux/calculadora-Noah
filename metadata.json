@@ -1,0 +1,7 @@
+{
+  "name": "Estudiante Pro — Centroamérica",
+  "description": "Calculadora rápida de notas y proyección de promedio para estudiantes de Costa Rica (escala 0-100).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
