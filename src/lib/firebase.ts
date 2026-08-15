@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, signInAnonymously, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, signInAnonymously, onAuthStateChanged, setPersistence, browserLocalPersistence, User } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA0It9vL6Q5x8e8clwBf8b0l1OcYKBKAQ0",
@@ -21,6 +21,7 @@ const NOMBRE_KEY = 'calculadoranotas_nombre_usuario';
 // Debe llamarse (y resolverse) antes de usar cualquier función de firebaseService.ts.
 export function ensureAuth(): Promise<User> {
   return new Promise((resolve, reject) => {
+    setPersistence(auth, browserLocalPersistence).catch(() => {});
     const unsub = onAuthStateChanged(auth, async (user) => {
       unsub();
       if (user) {

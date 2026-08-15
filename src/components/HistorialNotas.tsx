@@ -228,7 +228,7 @@ export const HistorialNotas: React.FC<HistorialNotasProps> = ({
           <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center mx-auto mb-3 border border-purple-100 dark:border-purple-900/50">
             <Bookmark className="w-6 h-6" />
           </div>
-          <h3 className="font-bold text-base text-slate-800 dark:text-white mb-1">
+          <h3 className="font-bold text-base text-slate-800 mb-1">
             No tienes notas ni cálculos guardados aún
           </h3>
           <p className="text-xs text-slate-500 max-w-sm mx-auto mb-6">
@@ -271,7 +271,7 @@ export const HistorialNotas: React.FC<HistorialNotasProps> = ({
                         <div className="flex items-start justify-between gap-3">
                           <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center gap-2 mb-1">
-                              <h4 className="font-bold text-base text-slate-900 dark:text-white leading-snug">
+                              <h4 className="font-bold text-base text-slate-900 leading-snug">
                                 {m.materia}
                               </h4>
                               <span
@@ -419,7 +419,7 @@ export const HistorialNotas: React.FC<HistorialNotasProps> = ({
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="font-bold text-sm text-slate-900 dark:text-white truncate">
+                          <span className="font-bold text-sm text-slate-900 truncate">
                             {item.nombre}
                           </span>
                           <span
@@ -442,7 +442,7 @@ export const HistorialNotas: React.FC<HistorialNotasProps> = ({
 
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
-                          <span className="text-lg font-black font-mono text-zinc-900 dark:text-white">
+                          <span className="text-lg font-black font-mono text-zinc-900">
                             {item.resultado}
                           </span>
                         </div>
