@@ -12,6 +12,8 @@ import { ScreenType, MenuItemInfo, HistorialCalculoItem, HistorialPromedioItem }
 import { Calculadora } from './components/Calculadora';
 import { Registro } from './components/Registro';
 import { HistorialNotas } from './components/HistorialNotas';
+import { Login } from './components/Login';
+import { ensureAuth, getNombreUsuario } from './lib/firebase';
 
 const MENU_ITEMS: MenuItemInfo[] = [
   {
@@ -48,10 +50,26 @@ export function App() {
   const [calculoSeleccionado, setCalculoSeleccionado] = useState<HistorialCalculoItem | null>(null);
   const [materiaSeleccionada, setMateriaSeleccionada] = useState<HistorialPromedioItem | null>(null);
 
+  // Auth / login state
+  const [cargandoAuth, setCargandoAuth] = useState(true);
+  const [nombreUsuario, setNombreUsuarioState] = useState<string | null>(null);
+
   // Installation banner state
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isIOSPrompt, setIsIOSPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    ensureAuth()
+      .then(() => {
+        setNombreUsuarioState(getNombreUsuario());
+        setCargandoAuth(false);
+      })
+      .catch((e) => {
+        console.error('Error al iniciar sesión anónima:', e);
+        setCargandoAuth(false);
+      });
+  }, []);
 
   useEffect(() => {
     const yaDescartado = typeof window !== 'undefined' && localStorage.getItem(YA_DESCARTADO_KEY);
@@ -99,6 +117,20 @@ export function App() {
       localStorage.setItem(YA_DESCARTADO_KEY, '1');
     }
   };
+
+  if (cargandoAuth) {
+    return null;
+  }
+
+  if (!nombreUsuario) {
+    return (
+      <div className="app-wrapper">
+        <div id="app">
+          <Login onLogin={(n) => setNombreUsuarioState(n)} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="app-wrapper">
